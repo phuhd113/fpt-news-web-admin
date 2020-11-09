@@ -1,0 +1,63 @@
+﻿
+@model IEnumerable<BLL.ViewModel.NewsModels.NewsViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>News management</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    
+        <thead>
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Title
+                </th>                
+                <th>
+                    Date Submitted
+                </th>
+                <th>
+                    Channel ID
+                </th>
+                <th>
+                    Link Image
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NewsId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NewsTitle)
+                    </td>                  
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DayOfPost)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ChannelId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LinkImage)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.NewsId }) |
+                        @Html.ActionLink("Details", "Details", new { id=item.NewsId  }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.NewsId })
+                    </td>
+                </tr>
+            }
+        </tbody>
+</table>

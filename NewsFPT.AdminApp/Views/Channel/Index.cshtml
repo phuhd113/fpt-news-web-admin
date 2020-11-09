@@ -1,0 +1,43 @@
+﻿@model IEnumerable<BLL.ViewModel.ChannelsModel.ChannelViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create Channel</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ChannelId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ChannelName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChannelId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChannelName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ChannelId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ChannelId }) |
+                @Html.ActionLink("Delete", "Delete", "Channel", new { id = item.ChannelId })
+              
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
