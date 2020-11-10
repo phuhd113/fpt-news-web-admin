@@ -21,7 +21,7 @@ namespace NewsFPT.AdminApp.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            var htmltask = api.GetWebContent("http://localhost:54975/api/Channels");
+            var htmltask = api.GetWebContent("https://news-fpt-api.azurewebsites.net/api/Channels");
             htmltask.Wait(); // Chờ tải xong
             // Hoặc wait htmltask; nếu chuyển Main thành async
 
@@ -38,7 +38,7 @@ namespace NewsFPT.AdminApp.Controllers
         [HttpPost]
         public IActionResult Create(ChannelCreateModel request)
         {
-            var url = "http://localhost:54975/api/Channels";
+            var url = "https://news-fpt-api.azurewebsites.net/api/Channels";
             var json = JsonConvert.SerializeObject(request);
             var result = api.SendAsyncJson(url, json, false);
             Debug.WriteLine(result);
@@ -48,7 +48,7 @@ namespace NewsFPT.AdminApp.Controllers
         [HttpGet]
         public IActionResult Details(int id)
         {
-            var htmltask = api.GetWebContent("http://localhost:54975/api/Channels" + "/" + id);
+            var htmltask = api.GetWebContent("https://news-fpt-api.azurewebsites.net/api/Channels" + "/" + id);
             htmltask.Wait(); // Chờ tải xong
             // Hoặc wait htmltask; nếu chuyển Main thành async
             var html = htmltask.Result;
@@ -60,7 +60,7 @@ namespace NewsFPT.AdminApp.Controllers
         [HttpPost,ActionName("Delete")]
         public IActionResult Delete(int id)
         {
-            var url = "http://localhost:54975/api/Channels";
+            var url = "https://news-fpt-api.azurewebsites.net/api/Channels";
             var json = JsonConvert.SerializeObject(id);
             var result = api.SendAsyncJson(url, json, true);
             Debug.WriteLine(result);

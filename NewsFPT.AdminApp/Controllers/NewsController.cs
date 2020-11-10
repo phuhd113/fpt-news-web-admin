@@ -24,7 +24,7 @@ namespace NewsFPT.AdminApp.Controllers
 
         public IActionResult Index()
         {
-            var htmltask = api.GetWebContent("http://localhost:54975/api/News");
+            var htmltask = api.GetWebContent("https://news-fpt-api.azurewebsites.net/api/News");
             htmltask.Wait(); // Chờ tải xong
             // Hoặc wait htmltask; nếu chuyển Main thành async
 
@@ -36,7 +36,7 @@ namespace NewsFPT.AdminApp.Controllers
         [HttpPost]
         public IActionResult Create(CreateNewsRequest request)
         {
-            var url = "http://localhost:54975/api/News";
+            var url = "https://news-fpt-api.azurewebsites.net/api/News";
             var json = JsonConvert.SerializeObject(request);
             var result = api.SendAsyncJson(url, json,false);
             Debug.WriteLine(result);
@@ -52,7 +52,7 @@ namespace NewsFPT.AdminApp.Controllers
         [HttpDelete]
         public IActionResult Delete(int id)
         {
-            var url = "http://localhost:54975/api/News" + "/" + id;
+            var url = "https://news-fpt-api.azurewebsites.net/api/News" + "/" + id;
             var json = JsonConvert.SerializeObject(id);
             var result = api.SendAsyncJson(url, json,true);
             Debug.WriteLine(result);
@@ -62,7 +62,7 @@ namespace NewsFPT.AdminApp.Controllers
         [HttpGet("News/Details/{id}")]
         public IActionResult Details(int id)
         {
-            var htmltask = api.GetWebContent("http://localhost:54975/api/News"+"/"+id);
+            var htmltask = api.GetWebContent("https://news-fpt-api.azurewebsites.net/api/News" + "/"+id);
             htmltask.Wait(); // Chờ tải xong
             // Hoặc wait htmltask; nếu chuyển Main thành async
             var html = htmltask.Result;

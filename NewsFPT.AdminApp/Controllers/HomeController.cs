@@ -30,7 +30,7 @@ namespace NewsFPT.AdminApp.Controllers
         [HttpPost]
         public IActionResult Login(UserForLoginModel request)
         {
-            var url = "http://localhost:54975/api/Users/LoginAdmin";
+            var url = "https://news-fpt-api.azurewebsites.net/api/Users/LoginAdmin";
             var json = JsonConvert.SerializeObject(request);
             var result = api.SendAsyncJson(url, json, false);
             Debug.WriteLine(result);
